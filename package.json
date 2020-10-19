@@ -1,6 +1,6 @@
 {
     "name": "@wakeup/react-use-storage",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "key-value storage react hook",
     "main": "dist/index.js",
     "sideEffects": false,
@@ -25,7 +25,7 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage --colors",
-        "preversion": "yarn test",
+        "preversion": "yarn test && yarn build",
         "postversion": "git push && git push --tags"
     },
     "lint-staged": {
