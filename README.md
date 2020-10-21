@@ -20,10 +20,7 @@ npm i --save @wakeup/react-use-storage
 import { useLocalStorage } from '@wakeup/react-use-storage';
 
 const App: FunctionComponent = () => {
-    const [
-        colorScheme,
-        setColorScheme,
-    ] = useLocalStorage({
+    const [colorScheme, setColorScheme] = useLocalStorage({
         key: 'colorScheme',
         initialValue: 'dark',
     });
@@ -31,8 +28,8 @@ const App: FunctionComponent = () => {
     return (
         <div>
             <h1>Current color scheme: {colorScheme}</h1>
-            <button onClick={() => setColorScheme('light')}>Light<button/>
-            <button onClick={() => setColorScheme('dark')}>Dark<button/>
+            <button onClick={() => setColorScheme('light')}>Light</button>
+            <button onClick={() => setColorScheme('dark')}>Dark</button>
         </div>
     );
 };
@@ -59,8 +56,8 @@ const App: FunctionComponent = () => {
     return (
         <div>
             <h1>Current color scheme: {colorScheme}</h1>
-            <button onClick={() => setColorScheme('light')}>Light<button/>
-            <button onClick={() => setColorScheme('dark')}>Dark<button/>
+            <button onClick={() => setColorScheme('light')}>Light</button>
+            <button onClick={() => setColorScheme('dark')}>Dark</button>
         </div>
     );
 };

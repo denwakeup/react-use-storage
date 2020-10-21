@@ -6,8 +6,8 @@ export class WebStorageAdapter implements BaseStorage<string> {
     storage: Storage | null;
 
     handlers: Map<
-        SubscribeHandler<string>,
-        SubscribeHandler<string>
+        SubscribeHandler<string, any>,
+        SubscribeHandler<string, any>
     > = new Map();
 
     constructor(storage: Storage | null) {
