@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Storage } from '../types/storage';
 import { Maybe } from '../types/maybe';
 import { StorageEvent } from '../types/storage-event';
+import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect';
 
 export interface Params<V, K> {
     key: K;
@@ -14,22 +15,9 @@ export const useStorage = <V, K>({
     storage,
     initialValue = null,
 }: Params<V, K>): [Maybe<V>, (data: V) => void, () => void] => {
-    const [localValue, setLocalValue] = useState<Maybe<V>>(
-        () => storage.getItem(key) ?? initialValue
-    );
+    const [localValue, setLocalValue] = useState<Maybe<V>>(initialValue);
 
-    const handleSetValue = useCallback(
-        (data: V) => {
-            storage.setItem(key, data);
-        },
-        [key, storage]
-    );
-
-    const handleRemoveValue = useCallback(() => {
-        storage.removeItem(key);
-    }, [key, storage]);
-
-    useEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         const storedValue = storage.getItem<V>(key);
         const actualValue = storedValue ?? initialValue;
 
@@ -55,6 +43,17 @@ export const useStorage = <V, K>({
             storage.unsubscribe(handleStorageValueChange);
         };
     }, [storage, key]);
+
+    const handleSetValue = useCallback(
+        (data: V) => {
+            storage.setItem(key, data);
+        },
+        [key, storage]
+    );
+
+    const handleRemoveValue = useCallback(() => {
+        storage.removeItem(key);
+    }, [key, storage]);
 
     return [localValue, handleSetValue, handleRemoveValue];
 };
