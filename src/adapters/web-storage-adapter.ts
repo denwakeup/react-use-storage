@@ -1,14 +1,8 @@
 import { Storage as BaseStorage } from '../types/storage';
 import { Maybe } from '../types/maybe';
-import { SubscribeHandler } from '../types/subscribe-handler';
 
-export class WebStorageAdapter implements BaseStorage<string> {
+export class WebStorageAdapter implements BaseStorage<string, any> {
     storage: Storage | null;
-
-    handlers: Map<
-        SubscribeHandler<string, any>,
-        SubscribeHandler<string, any>
-    > = new Map();
 
     constructor(storage: Storage | null) {
         this.storage = storage;
@@ -26,28 +20,9 @@ export class WebStorageAdapter implements BaseStorage<string> {
 
     setItem<V>(key: string, value: V) {
         this.storage?.setItem(key, JSON.stringify(value));
-        this.publish(key, value);
     }
 
     removeItem(key: string) {
         this.storage?.removeItem(key);
-        this.publish(key, null);
-    }
-
-    subscribe<V>(handler: SubscribeHandler<string, V>) {
-        this.handlers.set(handler, handler);
-    }
-
-    unsubscribe<V>(handler: SubscribeHandler<string, V>) {
-        this.handlers.delete(handler);
-    }
-
-    publish<K>(key: string, value: K) {
-        this.handlers.forEach((handler) => {
-            handler({
-                key,
-                value,
-            });
-        });
     }
 }

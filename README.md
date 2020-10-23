@@ -41,16 +41,11 @@ const App: FunctionComponent = () => {
 import { inMemoryStorage } from 'awesome-im-memory-storage';
 import { useStorage, Storage } from '@wakeup/react-use-storage';
 
-const inMemoryStorageAdapter: Storage<string> = new InMemoryStorageAdapter(inMemoryStorage);
-
 const App: FunctionComponent = () => {
-    const [
-        colorScheme,
-        setColorScheme,
-    ] = useStorage({
+    const [colorScheme, setColorScheme] = useStorage({
         key: 'colorScheme',
         initialValue: 'dark',
-        storage: inMemoryStorageAdapter;
+        storage: inMemoryStorage,
     });
 
     return (
@@ -61,5 +56,4 @@ const App: FunctionComponent = () => {
         </div>
     );
 };
-
 ```

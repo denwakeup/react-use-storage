@@ -10,7 +10,7 @@ export const createUseWebStorage = (webStorage: Storage | null) => {
     const storage = new WebStorageAdapter(webStorage);
 
     return <V>({ key, initialValue }: Params<V>) =>
-        useStorage({
+        useStorage<V>({
             key,
             initialValue,
             storage,
