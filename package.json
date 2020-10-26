@@ -1,6 +1,6 @@
 {
     "name": "@wakeup/react-use-storage",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "key-value storage react hook",
     "main": "dist/index.js",
     "sideEffects": false,
