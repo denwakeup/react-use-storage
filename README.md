@@ -1,5 +1,7 @@
 # react-use-storage
 
+[![npm](https://img.shields.io/npm/v/@wakeup/react-use-storage)](https://www.npmjs.com/package/@wakeup/react-use-storage)
+
 Easy use key-value storage in React. LocalStorage, SessionStorage, AsyncStorage and any other key-value storages.
 
 ## Install
