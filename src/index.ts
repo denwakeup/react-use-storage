@@ -9,4 +9,5 @@ export const useSessionStorage = createUseWebStorage(
 );
 
 export { useStorage } from './hooks/use-storage';
+export { useAsyncStorage } from './hooks/use-async-storage';
 export * from './types';

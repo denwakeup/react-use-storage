@@ -53,7 +53,7 @@ export const useStorage = <V, K = any>({
 
     useEffect(() => {
         const handleStorageValueChange = (event: StorageEvent) => {
-            if (!isActualEvent<V, K>(event, storage, key)) {
+            if (!isActualEvent(event, storage, key)) {
                 return;
             }
 
